@@ -18,9 +18,9 @@ function App() {
 
 
   useEffect( () => {
-    // getCandidates();
-    // getRemainingTime();``
-    // getCurrentStatus();
+    getCandidates();
+    getRemainingTime();
+    getCurrentStatus();
     if (window.ethereum) {
       window.ethereum.on('accountsChanged', handleAccountsChanged);
     }
@@ -43,7 +43,7 @@ function App() {
 
       const tx = await contractInstance.vote(number);
       await tx.wait();
-      // canVote();
+      canVote();
   }
 
 
@@ -104,7 +104,7 @@ function App() {
   function handleAccountsChanged(accounts) {
     if (accounts.length > 0 && account !== accounts[0]) {
       setAccount(accounts[0]);
-      // canVote();
+      canVote();
     } else {
       setIsConnected(false);
       setAccount(null);
@@ -122,7 +122,7 @@ function App() {
         setAccount(address);
         console.log("Metamask Connected : " + address);
         setIsConnected(true);
-        // canVote();
+        canVote();
       } catch (err) {
         console.error(err);
       }
